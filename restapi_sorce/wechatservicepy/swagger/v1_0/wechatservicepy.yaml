@@ -1,0 +1,385 @@
+swagger: "2.0"
+info:
+  description: ""
+  version: v1.0
+  title: {{title}}
+host: {{host}}
+basePath: /wechatservicepy/v1.0
+tags:
+- name: healthmng
+  description: "健康檢查的api"
+- name: wechatphonemng
+  description: ""
+schemes:
+- http
+- https
+securityDefinitions:
+  api_JWT:
+    type: apiKey
+    name: jwt
+    in: query
+    x-apikeyInfoFunc: app.apikey_auth
+  api_Key:
+    type: apiKey
+    name: apikey
+    in: query
+    x-apikeyInfoFunc: app.apikey_auth
+  api_Cookie:
+    type: apiKey
+    name: Cookie
+    in: header
+    x-apikeyInfoFunc: app.apikey_auth
+  api_Authorization:
+    type: apiKey
+    name: Authorization
+    in: header
+    x-apikeyInfoFunc: app.apikey_auth
+paths:
+  /health:
+    get:
+      tags:
+      - healthmng
+      summary: "服务健康检查"
+      description: ""
+      operationId: app.api.v1_0.healthmng.health_get
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: ""
+          schema:
+            type: string
+        422:
+          description: ""
+          schema:
+            $ref: "#/definitions/422_result"
+    # ks:key auth，js:jwt auth ,bs :basc auth ,os:oauth2 ,s:jw auth
+  /belonguserdatas:
+    get:
+      tags:
+      - wechatphonemng
+      summary: "接口1"
+      description: ""
+      operationId: app.api.v1_0.wechatphonemng.belonguserdatas_get
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: deviceid
+          description: ""
+          required: True
+          type: string
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/wechatphone"
+    # ks:key auth，js:jwt auth ,bs :basc auth ,os:oauth2 ,s:jw auth
+  /bulkadd:
+    post:
+      tags:
+      - wechatphonemng
+      summary: "接口2"
+      description: ""
+      operationId: app.api.v1_0.wechatphonemng.bulkadd_post
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: ""
+          required: True
+          schema:
+            $ref: "#/definitions/bulkadd_data"
+      responses:
+        201:
+          description: ""
+          schema:
+            type: string
+    # ks:key auth，js:jwt auth ,bs :basc auth ,os:oauth2 ,s:jw auth
+  /finishwork_callback:
+    post:
+      tags:
+      - wechatphonemng
+      summary: "接口3"
+      description: ""
+      operationId: app.api.v1_0.wechatphonemng.finishwork_callback_post
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: ""
+          required: True
+          schema:
+            $ref: "#/definitions/changedata_cbdata"
+      responses:
+        201:
+          description: ""
+          schema:
+            type: string
+    # ks:key auth，js:jwt auth ,bs :basc auth ,os:oauth2 ,s:jw auth
+  /ppd:
+    post:
+      tags:
+      - wechatphonemng
+      summary: "接口4"
+      description: ""
+      operationId: app.api.v1_0.wechatphonemng.ppd_post
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: phone
+          description: ""
+          required: True
+          type: string
+        - in: query
+          name: deviceid
+          description: ""
+          required: True
+          type: string
+        - in: query
+          name: ppd
+          description: ""
+          required: True
+          type: string
+      responses:
+        201:
+          description: ""
+          schema:
+            type: string
+    # ks:key auth，js:jwt auth ,bs :basc auth ,os:oauth2 ,s:jw auth
+  /reallocatephone:
+    get:
+      tags:
+      - wechatphonemng
+      summary: "接口5"
+      description: ""
+      operationId: app.api.v1_0.wechatphonemng.reallocatephone_get
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: phone
+          description: ""
+          required: True
+          type: string
+        - in: query
+          name: deviceid
+          description: ""
+          required: True
+          type: string
+      responses:
+        200:
+          description: ""
+          schema:
+            type: string
+    # ks:key auth，js:jwt auth ,bs :basc auth ,os:oauth2 ,s:jw auth
+  /remove_datas:
+    delete:
+      tags:
+      - wechatphonemng
+      summary: "接口6"
+      description: ""
+      operationId: app.api.v1_0.wechatphonemng.remove_datas_delete
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        204:
+          description: ""
+          schema:
+            type: string
+    # ks:key auth，js:jwt auth ,bs :basc auth ,os:oauth2 ,s:jw auth
+  /wechatphones:
+    get:
+      tags:
+      - wechatphonemng
+      summary: "接口7"
+      description: ""
+      operationId: app.api.v1_0.wechatphonemng.wechatphones_get
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: phone
+          description: ""
+          required: False
+          type: string
+        - in: query
+          name: finish_state
+          description: ""
+          required: False
+          type: integer
+          format: int32
+      responses:
+        200:
+          description: ""
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/wechatphone"
+    # ks:key auth，js:jwt auth ,bs :basc auth ,os:oauth2 ,s:jw auth
+    post:
+      tags:
+      - wechatphonemng
+      summary: "接口8"
+      description: ""
+      operationId: app.api.v1_0.wechatphonemng.wechatphones_post
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: ""
+          required: True
+          schema:
+            $ref: "#/definitions/wechatphone"
+      responses:
+        201:
+          description: ""
+          schema:
+            $ref: "#/definitions/wechatphone"
+    # ks:key auth，js:jwt auth ,bs :basc auth ,os:oauth2 ,s:jw auth
+  /wechatphones/{id}:
+    put:
+      tags:
+      - wechatphonemng
+      summary: "接口9"
+      description: ""
+      operationId: app.api.v1_0.wechatphonemng.wechatphones_id_put
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: ""
+          required: True
+          type: integer
+          format: int32
+        - in: body
+          name: body
+          description: ""
+          required: True
+          schema:
+            $ref: "#/definitions/wechatphone"
+      responses:
+        201:
+          description: ""
+          schema:
+            $ref: "#/definitions/wechatphone"
+    # ks:key auth，js:jwt auth ,bs :basc auth ,os:oauth2 ,s:jw auth
+definitions:
+  422_result:
+    type: object
+    description: ""
+    properties:
+      error:
+        description: ""
+        type: string
+  wechatphone:
+    type: object
+    description: ""
+    properties:
+      api:
+        description: ""
+        type: string
+      api_type:
+        description: ""
+        type: integer
+        format: int32
+      countrycode:
+        description: ""
+        type: string
+      password:
+        description: ""
+        type: string
+      phone:
+        description: ""
+        type: string
+      phone_code:
+        description: ""
+        type: string
+      finish_state:
+        description: ""
+        type: integer
+        format: int32
+      deviceid:
+        description: ""
+        type: string
+      finish_deviceid:
+        description: ""
+        type: string
+  changedata_cbdata:
+    type: object
+    description: ""
+    properties:
+      deviceid:
+        description: ""
+        type: string
+      phone:
+        description: ""
+        type: string
+      finish_state:
+        description: ""
+        type: integer
+        format: int32
+  bulkadd_data:
+    type: object
+    description: ""
+    properties:
+      datas:
+        description: ""
+        type: array
+        items:
+          $ref: "#/definitions/wechatphone"
