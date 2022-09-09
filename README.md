@@ -14,7 +14,7 @@
 2.安装完mysql后，需要建里数据库，本项目后端中的数据库名称是smartking，如果你用的数据库名称不是这个，请在config.py文件中替换
 以上完成了mysql淡妆与配置，目前数据库中没有任何表。
 
-3.进入wechatservicepy，运行create_new_table_run.py，运行成功后会自动在数据库中新建一个名为wechatphone的表，如果需要修改表名，
+3.进入restapi_sorce,wechatservicepy，运行create_new_table_run.py，运行成功后会自动在数据库中新建一个名为wechatphone的表，如果需要修改表名，
 进入models_base.py，找到__tablename__，修改对应的字符串即可
 ```
 
